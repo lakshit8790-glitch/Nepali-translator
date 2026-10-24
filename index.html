@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nepali Translator | भाषा सहजीकरण</title>
+  <meta name="description" content="Free AI-powered translation tool to instantly translate text into Nepali from English, Hindi, French, Spanish, and more languages.">
+  <meta name="keywords" content="Translate to Nepali, Nepali Translator, Free Translation, English to Nepali, AI Translator, Nepali Language Converter">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Free Nepali Translator - Translate Instantly">
+  <meta property="og:description" content="Need to communicate in Nepali? Our free translator converts your text to perfect Nepali in seconds. Try it now!">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzt1mO9akZJ2tYmUsWDg-HmJXUqUggZ5QkdA&s">
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://cdn.shopify.com/app-store/listing_images/fb9fc15cbec02bd735e2a5b491cf8409/icon/COHHk9eRs4oDEAE=.png">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #7cff83;
+      --primary-dark: #1b5e20;
+      --secondary: #ebc78d;
+      --light: #ffffff;
+      --dark: #000000;
+      --text: #000000;
+      --accent: #d32f2f;
+      --gray: #757575;
+      --border: #ffffff;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      width: 100%;
+      max-width: 700px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Header with cultural pattern */
+    .header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      padding: 25px 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='rgba(255,255,255,0.1)' d='M20,20 Q40,5 50,30 T80,20 Q95,40 80,50 T80,80 Q60,95 50,80 T20,80 Q5,60 20,50 T20,20'/%3E%3C/svg%3E");
+      background-size: 200px;
+      opacity: 0.2;
+    }
+
+    .title-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 20px;
+    }
+
+    .title-nepali {
+      font-family: 'Noto Sans Devanagari', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: white;
+      margin-top: 8px;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      background-color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .logo i {
+      font-size: 40px;
+      color: var(--primary);
+    }
+
+    /* Content area */
+    .content {
+      padding: 30px;
+    }
+
+    .input-area {
+      position: relative;
+      margin-bottom: 25px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    .section-title i {
+      margin-right: 10px;
+      color: var(--primary);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 150px;
+      padding: 16px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      resize: vertical;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      transition: var(--transition);
+      background-color: var(--light);
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
+    }
+
+    textarea::placeholder {
+      color: var(--gray);
+    }
+
+    .input-controls {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 12px;
+    }
+
+    .counter {
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+
+    .clear-btn {
+      background: none;
+      border: none;
+      color: var(--gray);
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      transition: var(--transition);
+      padding: 5px 10px;
+      border-radius: 6px;
+    }
+
+    .clear-btn:hover {
+      background-color: rgba(0,0,0,0.05);
+      color: var(--accent);
+    }
+
+    .clear-btn i {
+      margin-right: 5px;
+    }
+
+    .btn {
+      padding: 14px 20px;
+      background: linear-gradient(to right, var(--primary), var(--primary-dark));
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(46, 125, 50, 0.4);
+    }
+
+    .btn i {
+      margin-right: 8px;
+    }
+
+    #translateBtn {
+      margin-bottom: 25px;
+    }
+
+    .result-container {
+      background-color: #f8f9fa;
+      border-radius: 12px;
+      padding: 20px;
+      border: 2px solid var(--border);
+      margin-bottom: 25px;
+    }
+
+    #output {
+      min-height: 150px;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--dark);
+      font-family: 'Noto Sans Devanagari', sans-serif;
+      padding: 5px;
+    }
+
+    #detectedLang {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: var(--gray);
+      text-align: right;
+      font-style: italic;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .feature-btn {
+      padding: 12px 15px;
+      background-color: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .feature-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-color: var(--primary);
+    }
+
+    .feature-btn i {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+
+    .tip {
+      background-color: #e8f5e9;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 25px;
+      font-size: 0.9rem;
+      border-left: 4px solid var(--primary);
+    }
+
+    .tip-title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
+    .tip-title i {
+      margin-right: 8px;
+    }
+
+    .footer {
+      background-color: var(--light);
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--gray);
+      border-top: 1px solid var(--border);
+    }
+
+    .footer a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Dark mode */
+    body.dark {
+      background: linear-gradient(135deg, #121212 0%, #000000 100%);
+      color: #e0e0e0;
+    }
+
+    body.dark .container {
+      background-color: #1e1e1e;
+    }
+
+    body.dark .header {
+      background: linear-gradient(135deg, #1b5e20 0%, #0d3c13 100%);
+    }
+
+    body.dark textarea {
+      background-color: #2d2d2d;
+      border-color: #444;
+      color: #e0e0e0;
+    }
+
+    body.dark .result-container {
+      background-color: #252525;
+      border-color: #444;
+    }
+
+    body.dark #output {
+      color: #f0f0f0;
+    }
+
+    body.dark .feature-btn {
+      background-color: #2d2d2d;
+      border-color: #444;
+      color: #e0e0e0;
+    }
+
+    body.dark .tip {
+      background-color: #1a3c1e;
+      border-left-color: var(--primary);
+    }
+
+    body.dark .footer {
+      background-color: #1a1a1a;
+      border-top-color: #333;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .title-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .logo {
+        margin-top: 15px;
+      }
+      
+      .features {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .title {
+        font-size: 1.7rem;
+      }
+      
+      .title-nepali {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="title-container">
+        <div>
+          <h1 class="title">Nepali Translator</h1>
+          <p class="subtitle">Connect across languages with our free AI-powered translator</p>
+          <div class="title-nepali">नेपाली अनुवादक</div>
+        </div>
+        <div class="logo">
+          <i class="fas fa-language"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="input-area">
+        <div class="section-title">
+          <i class="fas fa-keyboard"></i>
+          <span>Text to Translate</span>
+        </div>
+        <textarea id="input" placeholder="Type or paste your text here..."></textarea>
+        <div class="input-controls">
+          <div class="counter" id="counter">0 words | 0 characters</div>
+          <button class="clear-btn" id="clearBtn">
+            <i class="fas fa-times"></i>
+            Clear
+          </button>
+        </div>
+      </div>
+
+      <button class="btn" id="translateBtn">
+        <i class="fas fa-exchange-alt"></i>
+        Translate to Nepali
+      </button>
+
+      <div class="result-container">
+        <div class="section-title">
+          <i class="fas fa-file-alt"></i>
+          <span>Translation</span>
+        </div>
+        <div id="output">Your translation will appear here...</div>
+        <div id="detectedLang"></div>
+      </div>
+
+      <div class="tip">
+        <div class="tip-title">
+          <i class="fas fa-lightbulb"></i>
+          <span>Translation Tips</span>
+        </div>
+        <p>For best results, use complete sentences. Our translator works best with conversational language rather than single words or technical jargon.</p>
+      </div>
+
+      <div class="features">
+        <button class="feature-btn" id="copyBtn">
+          <i class="far fa-copy"></i>
+          Copy Text
+        </button>
+        <button class="feature-btn" id="downloadBtn">
+          <i class="fas fa-download"></i>
+          Download
+        </button>
+        <button class="feature-btn" id="themeToggle">
+          <i class="fas fa-moon"></i>
+          Dark Mode
+        </button>
+        <button class="feature-btn" id="speakBtn">
+          <i class="fas fa-volume-up"></i>
+          Speak
+        </button>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Made with ❤️ for language learners | <a href="#">Privacy Policy</a> | <a href="#">Feedback</a></p>
+      <p>© 2025 भाषा सहजीकरण (Language Facilitation)</p>
+    </div>
+  </div>
+
+  <script>
+    const inputElem = document.getElementById('input');
+    const clearBtn = document.getElementById('clearBtn');
+    const translateBtn = document.getElementById('translateBtn');
+    const outputElem = document.getElementById('output');
+    const detectedLangElem = document.getElementById('detectedLang');
+    const copyBtn = document.getElementById('copyBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const themeToggle = document.getElementById('themeToggle');
+    const counterElem = document.getElementById('counter');
+    const speakBtn = document.getElementById('speakBtn');
+    let darkMode = false;
+
+    // Set initial example
+    const examples = [
+      "Welcome to our free Nepali translation service!",
+      "How can I help you today?",
+      "The mountains of Nepal are breathtaking.",
+      "Namaste! How are you doing?",
+      "Language connects us all across borders."
+    ];
+    inputElem.placeholder = `e.g., "${examples[Math.floor(Math.random() * examples.length)]}"`;
+
+    // Set initial counter
+    updateCounter();
+
+    translateBtn.addEventListener('click', translateText);
+    clearBtn.addEventListener('click', () => {
+      inputElem.value = '';
+      outputElem.innerText = 'Your translation will appear here...';
+      detectedLangElem.innerText = '';
+      updateCounter();
+      inputElem.focus();
+    });
+
+    inputElem.addEventListener('input', updateCounter);
+
+    function updateCounter() {
+      const text = inputElem.value.trim();
+      const words = text ? text.split(/\s+/).length : 0;
+      const chars = text.length;
+      counterElem.innerText = `${words} words | ${chars} characters`;
+    }
+
+    async function translateText() {
+      const inputText = inputElem.value.trim();
+      if (!inputText) {
+        showMessage('Please enter some text to translate.', 'error');
+        return;
+      }
+
+      // Show loading state
+      const originalBtnHTML = translateBtn.innerHTML;
+      translateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Translating...';
+      translateBtn.disabled = true;
+
+      const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=ne&dt=t&q=${encodeURIComponent(inputText)}`;
+
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Translation failed. Please try again.');
+        const data = await response.json();
+
+        let translatedText = '';
+        if (data[0]) {
+          data[0].forEach(item => {
+            if (item[0]) translatedText += item[0];
+          });
+        }
+
+        const detectedLang = data[2] || 'Unknown';
+        outputElem.innerText = translatedText;
+        detectedLangElem.innerText = `Detected language: ${detectedLang}`;
+      } catch (error) {
+        console.error('Error:', error);
+        showMessage('Error occurred during translation. Please try again.', 'error');
+        outputElem.innerText = 'Translation error. Please try again.';
+      } finally {
+        // Restore button
+        translateBtn.innerHTML = originalBtnHTML;
+        translateBtn.disabled = false;
+      }
+    }
+
+    function showMessage(message, type) {
+      // Create message element
+      const messageEl = document.createElement('div');
+      messageEl.textContent = message;
+      messageEl.style.cssText = `
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 15px 25px;
+        border-radius: 8px;
+        background-color: ${type === 'error' ? '#f44336' : '#4CAF50'};
+        color: white;
+        font-weight: 500;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 1000;
+        animation: fadeIn 0.3s, fadeOut 0.3s 2.7s;
+      `;
+      
+      document.body.appendChild(messageEl);
+      
+      // Remove after animation
+      setTimeout(() => {
+        messageEl.remove();
+      }, 3000);
+    }
+
+    // Copy Translation
+    copyBtn.addEventListener('click', () => {
+      const text = outputElem.innerText;
+      if (text && text !== 'Your translation will appear here...') {
+        navigator.clipboard.writeText(text);
+        showMessage('Translation copied to clipboard!', 'success');
+      } else {
+        showMessage('No translation to copy.', 'error');
+      }
+    });
+
+    // Download Translation
+    downloadBtn.addEventListener('click', () => {
+      const text = outputElem.innerText;
+      if (text && text !== 'Your translation will appear here...') {
+        const blob = new Blob([text], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'nepali_translation.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        showMessage('Translation downloaded!', 'success');
+      } else {
+        showMessage('No translation to download.', 'error');
+      }
+    });
+
+    // Dark/Light Mode
+    themeToggle.addEventListener('click', () => {
+      darkMode = !darkMode;
+      document.body.classList.toggle('dark', darkMode);
+      themeToggle.innerHTML = darkMode ? 
+        '<i class="fas fa-sun"></i> Light Mode' : 
+        '<i class="fas fa-moon"></i> Dark Mode';
+    });
+
+    // Speak Translation
+    speakBtn.addEventListener('click', () => {
+      const text = outputElem.innerText;
+      if (text && text !== 'Your translation will appear here...') {
+        const utterance = new SpeechSynthesisUtterance(text);
+        
+        // Try to find a Nepali voice
+        const voices = speechSynthesis.getVoices();
+        const nepaliVoice = voices.find(v => v.lang === "ne-NP");
+        
+        if (nepaliVoice) {
+          utterance.voice = nepaliVoice;
+        } else {
+          utterance.lang = "ne-NP"; // fallback
+        }
+        
+        speechSynthesis.speak(utterance);
+      } else {
+        showMessage('No translation to speak.', 'error');
+      }
+    });
+
+    // Load voices properly
+    if (speechSynthesis.onvoiceschanged !== undefined) {
+      speechSynthesis.onvoiceschanged = () => {};
+    }
+
+    // Add animation keyframes
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeIn {
+        from { opacity: 0; top: 0; }
+        to { opacity: 1; top: 20px; }
+      }
+      @keyframes fadeOut {
+        from { opacity: 1; top: 20px; }
+        to { opacity: 0; top: 0; }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
